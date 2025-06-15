@@ -13,7 +13,7 @@ output logic [3:0] status_out,
 reg [19:0] mant_a, mant_b, mant_r, mant_s; // 20bits (19:0)
 reg [10:0] exp_a, exp_b, exp_r, dif;   // 11 bits (30:20)
 reg sign_a, sign_b, sign_r;        // 1 bit (31)
-reg ov_flag, und_flag, inex_flag, ex_flag; // flags
+reg ov_flag, und_flag, inex_flag, exct_flag; // flags
 
 typedef enum {DIVIDE, PRE_ADD, ADD, NORMALIZER, SO, OVERFLOW, UNDERFLOW, INEXECT, EXACT} statetype;
 statetype states;
@@ -44,7 +44,7 @@ always @ (posedge clock_100k) begin
         ov_flag    
         und_flag
         inex_flag
-        ex_flag
+        exct_flag
         
 
         states <= DIVIDE;
@@ -83,8 +83,10 @@ always @ (posedge clock_100k) begin
                 end else begin
                     //se o expoente b for maior que a, então faz a diferença dos expoentes e usa esse expoente na soma e shifta a menor mantissa(a)
                     if (exp_b > exp_a) begin
+                        dif <= (exp_b - exp_a);
                         mant_a <= mant_a >> (exp_b - exp_a);
                         exp_a = exp_b;
+                        exp_r <= exp_a;
                         states <= ADD;
 
                     end
@@ -120,25 +122,29 @@ always @ (posedge clock_100k) begin
                 mant_r <= mant_r >> dif;
                 exp_r  <= exp_r + dif;
                 states <= SO;
+                
             end else begin
-                while (mantissa_result[23] != 1'b1 && expoente_result > 0) begin
-                mantissa_result = mantissa_result << 1;
-                 expoente_result = expoente_result - 1;
+                while (mant_r[23] != 1'b1 && exp_r > 0) begin
+                mant_r = mant_r << 1;
+                 exp_r = exp_r - 1;
                  states <= SO;
             end
         end
         
         SO: begin
-            if (expoente_result > 8'd254) begin
+            if (exp_r > 8'd254) begin
             status_out[2] = 1'b1;  // OVERFLOW
+
             end else begin
-                if (expoente_result < 8'd1 && mantissa_result != 0) begin
+                if (exp_r < 8'd1 && mant_r != 0) begin
                 status_out[1] = 1'b1;  // UNDERFLOW
                 end
+
             end else begin
                     if (guard_bit == 1'b1 || round_bit == 1'b1 || sticky_bit == 1'b1) begin
                     status_out[0] = 1'b1;  // INEXACT
                     end
+                    
             end else begin    
                     if (status_out == 4'b0000) begin
                     status_out[3] = 1'b1;  // EXACT
