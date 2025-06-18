@@ -5,7 +5,8 @@ Esse projeto tem como objetivo entender o papel do padrão IEEE-754 em projetos 
 
 ![alt text]({3D7B944B-E27B-4AC6-AD61-527C23A21FD7}.png)
 
-|    **Sinal**   |   **Direção**   |   **Descrição**                            |
+|    **Sinal**   |   **Direção**   |               **Descrição**                |
+|----------------|-----------------|--------------------------------------------|
 |   clock_100k   |      Input      |   Clock de 100KHz                          | 
 |   reset        |      Input      |   Reset assíncrono-baixo                   |
 |   op_a e op_b  |      Input      |   Operandos da soma/subtração              | 
