@@ -7,8 +7,10 @@ Esse projeto tem como objetivo entender o papel do padrão IEEE-754 em projetos 
 
 |    **Sinal**   |   **Direção**   |               **Descrição**                |
 |----------------|-----------------|--------------------------------------------|
-|   clock_100k   |      Input      |   Clock de 100KHz                          | 
-|   reset        |      Input      |   Reset assíncrono-baixo                   |
-|   op_a e op_b  |      Input      |   Operandos da soma/subtração              | 
-|   data_out     |      Output     |   Resultado da Operação                    | 
-|   status_out   |      Output     |   Informação do resultado no estilo one-hot| 
+|  `clock_100k`  |      Input      |   Clock de 100KHz                          | 
+|  `reset`       |      Input      |   Reset assíncrono-baixo                   |
+|  `op_a e op_b` |      Input      |   Operandos da soma/subtração              | 
+|  `data_out`    |      Output     |   Resultado da Operação                    | 
+|  `status_out`  |      Output     |   Informação do resultado no estilo one-hot| 
+
+## Operandos op_a e op_b:
