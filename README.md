@@ -26,7 +26,7 @@ Esse projeto tem como objetivo entender o papel do padrão IEEE-754 em projetos 
 ### Segundo:
 
 - Para determinar o x foi utilizado o seguinte cálculo:
-
+                ----------------------
               | X = [8 (+/-) ∑b mod 4] |
   
 - Onde ∑b representa a soma de todos os dígitos do número de matrícula (base 10) e mod 4 
