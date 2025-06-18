@@ -14,3 +14,15 @@ Esse projeto tem como objetivo entender o papel do padrão IEEE-754 em projetos 
 |  `status_out`  |      Output     |   Informação do resultado no estilo one-hot| 
 
 ## Operandos op_a e op_b:
+-Os operandos foram customizados com as parcelas do expoente e da mantissa com o seguinte cálculo:
+
+### Primeiro: 
+-Os operandos foram divididos da seguinte forma:
+
+| **Sinal(+ ou -)** |  **Expoente**   |   **Mantissa**   |   
+|-------------------|-----------------|------------------|
+|         1         |        X        |         Y        | 
+
+### Segundo:
+
+-Para determinar o x
