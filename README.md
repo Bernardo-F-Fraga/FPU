@@ -5,13 +5,13 @@ Esse projeto tem como objetivo entender o papel do padrão IEEE-754 em projetos 
 
 ![alt text]({3D7B944B-E27B-4AC6-AD61-527C23A21FD7}.png)
 
-|    **Sinal**   |   **Direção**   |               **Descrição**                |
-|----------------|-----------------|--------------------------------------------|
-|  `clock_100k`  |      Input      |   Clock de 100KHz                          | 
-|  `reset`       |      Input      |   Reset assíncrono-baixo                   |
-|  `op_a e op_b` |      Input      |   Operandos da soma/subtração              | 
-|  `data_out`    |      Output     |   Resultado da Operação                    | 
-|  `status_out`  |      Output     |   Informação do resultado no estilo one-hot| 
+|    **Sinal**   |   **Direção**   |                 **Descrição**                |
+|----------------|-----------------|----------------------------------------------|
+|  `clock_100k`  |      Input      |   Clock de 100KHz                            | 
+|  `reset`       |      Input      |   Reset assíncrono-baixo                     |
+|  `op_a e op_b` |      Input      |   Operandos da soma/subtração                | 
+|  `data_out`    |      Output     |   Resultado da Operação                      | 
+|  `status_out`  |      Output     |   Informação do resultado no estilo one-hot  | 
 
 ## Operandos op_a e op_b:
 - Os operandos foram customizados com a nossa matrícula da seguinte forma:
@@ -27,8 +27,7 @@ Esse projeto tem como objetivo entender o papel do padrão IEEE-754 em projetos 
 
 - Para determinar o x foi utilizado o seguinte cálculo:
 
-              |------------------------|
-              | X = [8 (+/-) ∑b mod 4] |
+               X = [8 (+/-) ∑b mod 4] 
   
 - Onde ∑b representa a soma de todos os dígitos do número de matrícula (base 10) e mod 4 
 representa o resto da divisão inteira por 4. O sinal + ou - é determinado pelo dígito 
@@ -37,6 +36,20 @@ verificador do número de matrícula: + se for ímpar, - se for par.
 - E para determinar o Y foi utilizado o seguinte cálculo:
 
                         Y = 31 - X.
+
+- Então, de acordo com a minha mátricula (24102913-1) foi calculado da seguinte forma:
+
+      X = [8 + (2+4+1+0+2+9+1+3+1) mod 4] = [8 + 23 mod 4] = [8 + 3] = 11
+      Y = [31 - 11] = 20
   
+- Dessa forma meus operandos ficaram no seguinte formado:
+
+| **Sinal(+ ou -)** |  **Expoente**   |   **Mantissa**   |   
+|-------------------|-----------------|------------------|
+|        `1`        |       `11`      |       `20`       | 
+
+## Como funciona :
+
+A FPU foi programada com uma máquina de estados que são :  DIVIDE, PRE_ADD, WAIT_PRE_ADD, ADD, WAIT_ADD, NORMALIZER, ROUNDING, OUTPUT_RESULT; A máquina inicializa os sinais, registradores e as flags (que serão usadas no status out). Ela passa para o estado DIVIDE, onde ele recebe os operandos com os números padronizados e "desmancha" eles em sinal, expoente e mantissa. Após, vai para o estado PRE_ADD que verifica os expoentes, se os expoentes forem iguais, então, vai para o estado WAIT_PRE_ADD, se não ele faz com que os operandos fiquem com o mesmo operando "shiftando" o operando com menor expoente.
 
 
