@@ -52,6 +52,6 @@ verificador do número de matrícula: + se for ímpar, - se for par.
 
 A FPU foi programada com uma máquina de estados que são :  DIVIDE, PRE_ADD, WAIT_PRE_ADD, ADD, WAIT_ADD, NORMALIZER, ROUNDING, OUTPUT_RESULT; 
 
-A máquina inicializa os sinais, registradores e as flags (que serão usadas no status out). Ela passa para o estado `DIVIDE`, onde ele recebe os operandos com os números padronizados e "desmancha" eles em sinal, expoente e mantissa. Após, vai para o estado PRE_ADD que verifica os expoentes, se os expoentes forem iguais, então, vai para o estado WAIT_PRE_ADD, se não ele faz com que os operandos fiquem com o mesmo operando "shiftando" o operando com menor expoente.
+A máquina inicializa os sinais, registradores e as flags (que serão usadas no status out). Ela passa para o estado `DIVIDE`, onde ele recebe os operandos com os números padronizados e "desmancha" eles em sinal, expoente e mantissa. Após, vai para o estado `PRE_ADD` que verifica os expoentes, se os expoentes forem iguais, então, vai para o estado `WAIT_PRE_ADD`, se não ele faz com que os operandos fiquem com o mesmo expoente "shiftando" o operando com o menor expoente. Após, vai para o estado `WAIT_PRE_ADD`, para passar o expoente escolhido para o expoente final. Depois, vai para o estado `ADD`, onde ocorre a soma/subtração que depende dos sinais, pois, se os sinais forem iguais ele soma de forma direta, se não ele compara as  mantissas e a que for maior 
 
 
