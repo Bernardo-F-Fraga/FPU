@@ -20,11 +20,7 @@ module FPU (
     // Status
     logic ov_flag, und_flag, inex_flag, exct_flag;
 
-    typedef enum logic [3:0] {
-        DIVIDE, PRE_ADD, WAIT_PRE_ADD,
-        ADD, WAIT_ADD,
-        NORMALIZER, ROUNDING, OUTPUT_RESULT
-    } statetype;
+    typedef enum logic [3:0] { DIVIDE, PRE_ADD, WAIT_PRE_ADD, ADD, WAIT_ADD, NORMALIZER, ROUNDING, OUTPUT_RESULT } statetype;
     statetype states;
 
     always_ff @(posedge clock_100k or negedge reset) begin
