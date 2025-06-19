@@ -59,20 +59,7 @@ Para simular a FPU , entre na pasta `TB/` e então utilize o comando `do sim.do`
 
 ## Descrição do espectro espectro numérico representável pela FPU de padrão customizado:
 
-| Nome Comum                 | Padrão de Bits (Hex) | Valor Decimal Approx.                |
-|----------------------------|----------------------|--------------------------------------|
-| +0                         | 00000000             | 0.0                                  |
-| -0                         | 80000000             | -0.0                                 |
-| 1                          | 3ff00000             | 1.0                                  |
-| 2                          | 40000000             | 2.0                                  |
-| Maior número normal        | 7fefffff             | ≈ 1.7976931348623157e+308            |
-| Mínimo normal positivo     | 00100000             | ≈ 2.2250738585072014e-308            |
-| Maior subnormal            | 000fffff             | ≈ 2.2250738585072009e-308            |
-| Mínimo subnormal positivo  | 00000001             | ≈ 4.9406564584124654e-324            |
-| +∞                         | 7ff00000             | Infinity                             |
-| -∞                         | fff00000             | -Infinity                            |
-| Not-a-Number (NaN)         | 7ff80000             | NaN                                  |
-
+|
 
 
 
