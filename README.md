@@ -59,7 +59,6 @@ Para simular a FPU , entre na pasta `TB/` e então utilize o comando `do sim.do`
 
 ## Descrição do espectro espectro numérico representável pela FPU de padrão customizado:
 
-|
 
 
 
