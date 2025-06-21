@@ -58,14 +58,12 @@ A máquina inicializa os sinais, registradores e as flags (que serão usadas no 
 
 - Representação decimal:
   
-| ||||| ||| | |  |    |         |---------------------------> 
+![{649A1B34-5779-408B-A40D-D1446E8BBBD4}](https://github.com/user-attachments/assets/3e8d6d97-fe05-479f-bb74-292a14b93585)
 
-0 1   2  3 ... 10   100   1.0e3   ...        1.0e6   ...   1.0e308
 
 - Representação binária:                          
 
-| ||||| ||| | |   |        |------------------------------->   
-0 2⁻²⁰ 2⁻¹⁹ ... 1   2   4   8   16   ...   2²⁰⁴⁷               
+![{4086F72E-BCBB-4E38-A1FF-282606A91EA1}](https://github.com/user-attachments/assets/8e39e370-c928-4db0-89a5-33236dfcb6b0)
 
 
 ## Como simular
