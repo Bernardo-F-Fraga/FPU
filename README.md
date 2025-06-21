@@ -66,9 +66,16 @@ A máquina inicializa os sinais, registradores e as flags (que serão usadas no 
 ![{4086F72E-BCBB-4E38-A1FF-282606A91EA1}](https://github.com/user-attachments/assets/8e39e370-c928-4db0-89a5-33236dfcb6b0)
 
 
+
 ## Como simular
 Para simular a FPU , entre na pasta `TB/` e então utilize o comando `do sim.do` para simular. 
 
+## Resultados da simulação:
+
+![{2A114C3D-264E-4A7F-8E91-CC3463511EDA}](https://github.com/user-attachments/assets/1a989d57-b6eb-4bc4-a6a3-be712a9d41c2)
+
+
+![{25D7111C-9C6B-4268-B3BD-44132D31A804}](https://github.com/user-attachments/assets/7e451caf-259e-45ae-8fa7-f4db53c46b8c)
 
 
 
