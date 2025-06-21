@@ -56,6 +56,17 @@ A máquina inicializa os sinais, registradores e as flags (que serão usadas no 
 
 ## Descrição do espectro espectro numérico representável pela FPU de padrão customizado:
 
+
+
+
+
+- Representação binária:
+
+|-----------------------------------------------------------------|
+|  | ||||| ||| | |   |        |------------------------------->   |
+|  0 2⁻²⁰ 2⁻¹⁹ ... 1   2   4   8   16   ...   2²⁰⁴⁷               |
+
+
 ## Como simular
 Para simular a FPU , entre na pasta `TB/` e então utilize o comando `do sim.do` para simular. 
 
