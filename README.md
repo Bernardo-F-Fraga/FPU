@@ -60,8 +60,8 @@ A máquina inicializa os sinais, registradores e as flags (que serão usadas no 
 
 
 
-- Representação binária:
 
+|                  Representação binária                          |
 |-----------------------------------------------------------------|
 |  | ||||| ||| | |   |        |------------------------------->   |
 |  0 2⁻²⁰ 2⁻¹⁹ ... 1   2   4   8   16   ...   2²⁰⁴⁷               |
