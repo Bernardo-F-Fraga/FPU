@@ -56,9 +56,10 @@ A máquina inicializa os sinais, registradores e as flags (que serão usadas no 
 
 ## Descrição do espectro espectro numérico representável pela FPU de padrão customizado:
 
--Representação decimal:
-
-
+- Representação decimal:
+  
+  | ||||| ||| | |  |    |         |---------------------------> 
+0 1   2  3 ... 10   100   1.0e3   ...        1.0e6   ...   1.0e308
 
 - Representação binária:                          
 
