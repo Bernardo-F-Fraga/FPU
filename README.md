@@ -1,5 +1,5 @@
 # FPU
-Esse projeto tem como objetivo entender o papel do padrão IEEE-754 em projetos de hardware de unidades de ponto-flutuante (FPU's). O desafio foi formatar nossos próprios operandos de acordo com a nossa matrícula.
+Esse projeto tem como objetivo entender o papel do padrão IEEE-754 em projetos de hardware de unidades de ponto-flutuante (FPU's). O desafio foi formatar nossos próprios operandos de acordo com a nossa matrícula (explicado posteriormente).
 
 ## Interface:
 
@@ -19,9 +19,9 @@ Esse projeto tem como objetivo entender o papel do padrão IEEE-754 em projetos 
 ### Primeiro: 
 - Os operandos foram divididos da seguinte forma:
 
-| **Sinal(+ ou -)** |  **Expoente**   |   **Mantissa**   |   
-|-------------------|-----------------|------------------|
-|        `1`        |       `X`       |       `Y`        | 
+|  **Sinal(+ ou -)**  |  **Expoente**   |   **Mantissa**   |   
+|---------------------|-----------------|------------------|
+| `0 = (+) e 1 = (-)` |       `X`       |       `Y`        | 
 
 ### Segundo:
 
@@ -44,15 +44,15 @@ verificador do número de matrícula: + se for ímpar, - se for par.
   
 - Dessa forma meus operandos ficaram no seguinte formado:
 
-| **Sinal(+ ou -)** |  **Expoente**   |   **Mantissa**   |   
-|-------------------|-----------------|------------------|
-|        `1`        |       `11`      |       `20`       | 
+|  **Sinal(+ ou -)**  |  **Expoente**   |   **Mantissa**   |   
+|---------------------|-----------------|------------------|
+| `0 = (+) e 1 = (-)` |       `11`      |       `20`       | 
 
 ## Como funciona :
 
-A FPU foi programada com uma máquina de estados que são :  DIVIDE, PRE_ADD, ADD, POS_ADD, NORMALIZER, OUTPUT_RESULT;
+A FPU foi programada com uma máquina de estados, os quais são :  `DIVIDE`, `PRE_ADD`, `ADD`, `POS_ADD`, `NORMALIZER`, `OUTPUT_RESULT`;
 
-A máquina inicializa os sinais, os registradores e as flags (que serão usadas no `status_out`). Ela passa para o estado `DIVIDE`, onde ele recebe os operandos com os números padronizados e "desmancha" eles em sinal, expoente e mantissa. Após, vai para o estado `PRE_ADD` que verifica os expoentes, se os expoentes forem iguais, então, vai para o estado `ADD`, se não ele faz com que os operandos fiquem com o mesmo expoente "shiftando" o operando com o menor expoente. Depois, vai para o estado `ADD`, onde ocorre a soma/subtração que depende dos sinais, pois, se os sinais forem iguais ele soma diretamente as mantissas e mantém o sinal dos dois operandos, se não ele compara as mantissas para fazer subtração da maior mantissa pela menor mantissa, e o sinal do resultado será o da maior mantissa. Depois, vai para o estado `POS_ADD`para ajustar a mantissa e o sinal final, além de dizer se o operando final resulta em 0. O estado muda para o `NORMALIZER` que faz o papel de normalizar o resultado, "shiftando" de volta a diferença dos expoentes que teve de fazer para realizar a soma das mantissas no estado `PRE_ADD`, além de definir as flags de overflow, underflow, exatidão e zero. E finalmente, no estado `OUTPUT_RESULT`, é onde concatena o `sinal final`, o `expoente final` e a `mantissa final`, concatena as flags (respectivamente, [3] EXACT, [2] OVERFLOW, [1] UNDERFLOW, [0] INEXACT), se houve overflow a saída recebe infinito com sinal correto e se o resultado é zero a saída recebe zero.
+A através do reset a máquina inicializa (zera) os sinais, os registradores e as flags (que serão usadas no `status_out`). Ela passa para o estado `DIVIDE`, onde ele recebe os operandos com os números já padronizados no meu modelo e "desmancha" eles em sinal, expoente e mantissa. Após, vai para o estado `PRE_ADD` que verifica os expoentes, se os expoentes forem iguais, então, vai para o estado `ADD`, se não, ele faz com que os operandos fiquem com o mesmo expoente "shiftando" o operando com o menor expoente. Depois, vai para o estado `ADD`, onde ocorre a soma/subtração que depende dos sinais, pois, se os sinais forem iguais ele soma diretamente as mantissas e mantém o sinal dos dois operandos, se não ele compara as mantissas para fazer subtração da maior mantissa pela menor mantissa, e o sinal do resultado será o da maior mantissa. Depois, vai para o estado `POS_ADD` para ajustar a mantissa e o sinal final, além de dizer se o operando final resulta em 0 com uma flag. O estado muda para o `NORMALIZER` que faz o papel de normalizar o resultado, "shiftando" de volta a diferença dos expoentes que teve de fazer para realizar a soma das mantissas no estado `PRE_ADD`, além de definir as flags de overflow, underflow, exact, inexact e zero. E finalmente, no estado `OUTPUT_RESULT`, é onde concatena o `sinal final`, o `expoente final` e a `mantissa final`, concatena as flags (respectivamente, [3] EXACT, [2] OVERFLOW, [1] UNDERFLOW, [0] INEXACT), se houve overflow a saída recebe infinito com sinal correto e se o resultado é zero a saída recebe zero. No final retorna para o estado `DIVIDE`.
 
 ## Descrição do espectro espectro numérico representável pela FPU de padrão customizado:
 
@@ -68,7 +68,7 @@ A máquina inicializa os sinais, os registradores e as flags (que serão usadas 
 
 
 ## Como simular
-Para simular a FPU , entre na pasta `TB/` e então utilize o comando `do sim.do` para simular. 
+Para simular a FPU , entre no questa (ou outra ferramenta de simulação) , troque o diretório para a pasta `TB/` e então utilize o comando `do sim.do` para simular. 
 
 ## Resultados da simulação:
 
